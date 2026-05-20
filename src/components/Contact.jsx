@@ -6,6 +6,7 @@ const Contact = () => {
   const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' });
   const [errors, setErrors] = useState({});
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const validate = () => {
     const tempErrors = {};
@@ -29,12 +30,41 @@ const Contact = () => {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (validate()) {
-      setSubmitted(true);
-      setFormData({ name: '', email: '', subject: '', message: '' });
-      setTimeout(() => setSubmitted(false), 5000);
+      setIsSubmitting(true);
+      setErrors({});
+
+      try {
+        const response = await fetch("https://api.web3forms.com/submit", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          body: JSON.stringify({
+            access_key: "4d4dfba2-2a91-473c-a4ca-5a5ea7dcefd2",
+            name: formData.name,
+            email: formData.email,
+            subject: `Portfolio Contact: ${formData.subject}`,
+            message: formData.message,
+          }),
+        });
+
+        const result = await response.json();
+        if (result.success) {
+          setSubmitted(true);
+          setFormData({ name: '', email: '', subject: '', message: '' });
+          setTimeout(() => setSubmitted(false), 5000);
+        } else {
+          setErrors({ submit: result.message || "Failed to send message. Please try again." });
+        }
+      } catch (err) {
+        setErrors({ submit: "Network error. Please check your internet connection and try again." });
+      } finally {
+        setIsSubmitting(false);
+      }
     }
   };
 
@@ -116,6 +146,7 @@ const Contact = () => {
                     onChange={handleChange}
                     className={`form-input ${errors.name ? 'form-input-error' : ''}`}
                     placeholder="Your Name"
+                    disabled={isSubmitting}
                   />
                   {errors.name && <span className="form-error-msg"><FiAlertCircle /> {errors.name}</span>}
                 </div>
@@ -130,6 +161,7 @@ const Contact = () => {
                     onChange={handleChange}
                     className={`form-input ${errors.email ? 'form-input-error' : ''}`}
                     placeholder="your.email@example.com"
+                    disabled={isSubmitting}
                   />
                   {errors.email && <span className="form-error-msg"><FiAlertCircle /> {errors.email}</span>}
                 </div>
@@ -144,6 +176,7 @@ const Contact = () => {
                     onChange={handleChange}
                     className={`form-input ${errors.subject ? 'form-input-error' : ''}`}
                     placeholder="Internship Inquiry"
+                    disabled={isSubmitting}
                   />
                   {errors.subject && <span className="form-error-msg"><FiAlertCircle /> {errors.subject}</span>}
                 </div>
@@ -158,12 +191,24 @@ const Contact = () => {
                     onChange={handleChange}
                     className={`form-input ${errors.message ? 'form-input-error' : ''}`}
                     placeholder="Tell me about the opportunity..."
+                    disabled={isSubmitting}
                   />
                   {errors.message && <span className="form-error-msg"><FiAlertCircle /> {errors.message}</span>}
                 </div>
 
-                <button type="submit" className="btn btn-primary btn-submit" style={{ width: '100%' }}>
-                  <FiSend /> Send Message
+                {errors.submit && (
+                  <div className="form-group" style={{ marginBottom: '15px' }}>
+                    <span className="form-error-msg"><FiAlertCircle /> {errors.submit}</span>
+                  </div>
+                )}
+
+                <button 
+                  type="submit" 
+                  className="btn btn-primary btn-submit" 
+                  style={{ width: '100%' }}
+                  disabled={isSubmitting}
+                >
+                  <FiSend /> {isSubmitting ? "Sending..." : "Send Message"}
                 </button>
               </form>
             )}
