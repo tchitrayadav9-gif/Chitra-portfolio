@@ -1,4 +1,3 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 import { FiCpu, FiCheckCircle } from 'react-icons/fi';
 
@@ -29,40 +28,26 @@ const Experience = () => {
             >
               <span className="timeline-date">Professional Training</span>
               <h3 className="timeline-title">AI Agents 201: Hands-On Workshop</h3>
-              <h4 className="timeline-subtitle" style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
-                <FiCpu style={{ color: 'var(--color-purple)' }} /> NxtWave
+              <h4 className="timeline-subtitle">
+                <FiCpu /> NxtWave
               </h4>
               
-              <ul style={{ listStyle: 'none', padding: 0, margin: '20px 0' }}>
+              <ul className="timeline-list">
                 {points.map((pt, idx) => (
-                  <li key={idx} style={{ 
-                    display: 'flex', 
-                    alignItems: 'flex-start', 
-                    gap: '10px', 
-                    marginBottom: '10px',
-                    color: 'var(--text-secondary)'
-                  }}>
-                    <FiCheckCircle style={{ color: 'var(--color-purple)', marginTop: '4px', flexShrink: 0 }} />
+                  <li key={idx} className="timeline-list-item">
+                    <FiCheckCircle />
                     <span>{pt}</span>
                   </li>
                 ))}
               </ul>
-
-              <div className="skills-acquired" style={{ marginTop: '20px' }}>
-                <span style={{ fontWeight: '600', fontSize: '0.9rem', display: 'block', marginBottom: '8px' }}>
+ 
+              <div className="skills-acquired">
+                <span className="skills-acquired-label">
                   Core Competencies:
                 </span>
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+                <div className="skills-acquired-tags">
                   {["AI Agents", "Prompt Engineering", "AI Workflows", "Tool Integration", "Automation Basics"].map((tag, i) => (
-                    <span key={i} className="tech-tag" style={{
-                      padding: '4px 10px',
-                      borderRadius: '4px',
-                      backgroundColor: 'var(--bg-primary)',
-                      border: '1px solid var(--border-color)',
-                      fontSize: '0.8rem',
-                      fontWeight: '500',
-                      color: 'var(--color-purple)'
-                    }}>{tag}</span>
+                    <span key={i} className="competency-tag">{tag}</span>
                   ))}
                 </div>
               </div>

@@ -1,4 +1,3 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 import { FiDownload, FiPrinter, FiMail, FiPhone, FiMapPin, FiLinkedin, FiGithub } from 'react-icons/fi';
 
@@ -15,7 +14,7 @@ const Resume = () => {
           <h2 className="section-title">Resume</h2>
         </div>
 
-        <div className="resume-buttons" style={{ textAlign: 'center', marginBottom: '30px', display: 'flex', gap: '15px', justifyContent: 'center' }}>
+        <div className="resume-buttons">
           <a href="#" className="btn btn-primary" onClick={(e) => { e.preventDefault(); alert("Resume PDF downloaded (simulation)."); }}>
             <FiDownload /> Download PDF
           </a>
@@ -105,7 +104,7 @@ const Resume = () => {
                 </ul>
               </div>
 
-              <div className="resume-item" style={{ marginTop: '15px' }}>
+              <div className="resume-item">
                 <div className="resume-item-header">
                   <h3 className="resume-h3">Farmer Assistant – AI Chat Companion</h3>
                   <span className="resume-item-date">Python, React.js, SQLite, AI Integrations</span>

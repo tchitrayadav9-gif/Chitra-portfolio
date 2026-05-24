@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { FiArrowUp } from 'react-icons/fi';
 import { AnimatePresence, motion } from 'framer-motion';
 

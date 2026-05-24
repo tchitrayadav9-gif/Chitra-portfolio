@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { DiJavascript1, DiPython, DiMysql, DiCss3 } from 'react-icons/di';
 import { SiSqlite, SiBootstrap, SiGit, SiGithub, SiReact, SiHtml5 } from 'react-icons/si';

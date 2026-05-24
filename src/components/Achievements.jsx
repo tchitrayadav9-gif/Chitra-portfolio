@@ -1,4 +1,3 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 import { FiTrendingUp, FiActivity, FiCpu } from 'react-icons/fi';
 
@@ -32,7 +31,7 @@ const Achievements = () => {
           <h2 className="section-title">Key Achievements</h2>
         </div>
 
-        <div className="achievements-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '30px' }}>
+        <div className="achievements-grid">
           {achievements.map((item, index) => (
             <motion.div
               key={index}
@@ -41,26 +40,16 @@ const Achievements = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: index * 0.1 }}
               className="glass-card achievement-card"
-              style={{ display: 'flex', gap: '20px', alignItems: 'flex-start' }}
             >
-              <div className="achievement-icon" style={{
-                fontSize: '1.5rem',
-                color: '#ffffff',
-                backgroundColor: 'var(--color-purple)',
-                padding: '12px',
-                borderRadius: '12px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center'
-              }}>
+              <div className="achievement-icon">
                 {item.icon}
               </div>
-              <div>
-                <span className="achievement-metric" style={{ fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--color-navy)', fontWeight: '600', display: 'block', marginBottom: '4px' }}>
+              <div className="achievement-details">
+                <span className="achievement-metric">
                   {item.metric}
                 </span>
-                <h3 style={{ fontSize: '1.2rem', marginBottom: '8px' }}>{item.title}</h3>
-                <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>{item.desc}</p>
+                <h3 className="achievement-title">{item.title}</h3>
+                <p className="achievement-desc">{item.desc}</p>
               </div>
             </motion.div>
           ))}

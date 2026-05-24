@@ -1,4 +1,3 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 import { FiGithub, FiExternalLink, FiCalendar, FiUser, FiCpu } from 'react-icons/fi';
 

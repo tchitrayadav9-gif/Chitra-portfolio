@@ -1,6 +1,8 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { FiArrowDown, FiDownload, FiMail, FiCode } from 'react-icons/fi';
+
+const titles = ["React Developer", "Frontend Developer", "AI Enthusiast", "Problem Solver"];
 
 const Hero = () => {
   const [text, setText] = useState('');
@@ -8,7 +10,6 @@ const Hero = () => {
   const [loopNum, setLoopNum] = useState(0);
   const [typingSpeed, setTypingSpeed] = useState(150);
 
-  const titles = ["React Developer", "Frontend Developer", "AI Enthusiast", "Problem Solver"];
   const canvasRef = useRef(null);
 
   useEffect(() => {

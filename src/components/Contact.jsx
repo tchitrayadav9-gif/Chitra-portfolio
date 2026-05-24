@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { FiMail, FiPhone, FiMapPin, FiSend, FiAlertCircle } from 'react-icons/fi';
 
@@ -61,6 +61,7 @@ const Contact = () => {
           setErrors({ submit: result.message || "Failed to send message. Please try again." });
         }
       } catch (err) {
+        console.error(err);
         setErrors({ submit: "Network error. Please check your internet connection and try again." });
       } finally {
         setIsSubmitting(false);
@@ -197,7 +198,7 @@ const Contact = () => {
                 </div>
 
                 {errors.submit && (
-                  <div className="form-group" style={{ marginBottom: '15px' }}>
+                  <div className="form-group form-group-error-msg">
                     <span className="form-error-msg"><FiAlertCircle /> {errors.submit}</span>
                   </div>
                 )}
@@ -205,7 +206,6 @@ const Contact = () => {
                 <button 
                   type="submit" 
                   className="btn btn-primary btn-submit" 
-                  style={{ width: '100%' }}
                   disabled={isSubmitting}
                 >
                   <FiSend /> {isSubmitting ? "Sending..." : "Send Message"}

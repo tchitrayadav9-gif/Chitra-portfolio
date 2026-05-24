@@ -1,4 +1,3 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 import { FiBookOpen, FiUsers, FiSliders, FiTrendingUp } from 'react-icons/fi';
 
